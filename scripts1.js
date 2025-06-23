@@ -7,7 +7,7 @@ const navEntries = performance.getEntriesByType("navigation");
   const userAge = sessionStorage.getItem('userAge');
 
   if (!userAge || isReload) {
-    sessionStorage.clear(); // optional if you want to fully reset
+    sessionStorage.clear(); 
     window.location.href = "balanced_plate.html";
   }
   
