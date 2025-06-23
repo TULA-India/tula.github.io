@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #00996D;
+            z-index: 999;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #008054;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo-icon {
+            font-size: 1.6rem;
+            margin-right: 0.5rem;
+        }
+        .brand {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        .design-btn {
+            background: #ffffff;
+            color: #008054;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .design-btn:hover {
+            background-color: #E8F5E9;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+        .nav-item {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background-color:#66BB6A;
+            color:black;
+        }
+        .nav-item.active {
+            background-color: white;
+            color: #005d42;
+            font-weight: bold;
+        }
+       
+        .main-content {
+            padding: 6rem 2rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.1rem;
+            color: #111827;
+            margin-bottom: 0.1rem;
+        }
+
+        .page-header .subtitle {
+            color: #6b7280;
+            font-size: 1rem;
+            padding:0.1rem;
+        }
+
+       
+        .post-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            max-width:900px;
+        }
+
+        .post-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .post-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .post-user {
+            flex: 1;
+        }
+
+        .post-user strong {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .post-user span {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        .post-content {
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+
+        .tags {
+            color: #059669;
+            font-size: 0.85rem;
+            margin: 0.5rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .image-container {
+            position: relative;
+            margin: 1rem 0;
+        }
+
+        .post-image {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+            max-height: 400px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .image-action-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255,255,255,0.9);
+            color: #065f46;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .image-action-btn:hover {
+            background-color: white;
+            transform: translateY(-1px);
+        }
+
+        .bookmark-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background:none;
+            border: none;
+            font-size: 1.4rem;
+            cursor:pointer;
+            color:#FFD700; 
+            transition: all 0.3s;
+        }
+
+        .bookmark-btn:hover {
+            transform: scale(1.2);
+        }
+
+        .ingredients {
+            background-color: #e6fff2;
+            padding: 0.4rem;
+            margin-top:0.5rem;
+        }
+
+        .ingredients strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00894d;
+            font-size:12px;
+        }
+
+        .tag {
+            background-color:white;
+            color: #00894d;
+            padding: 5px 10px;
+            margin: 3px;
+            border-radius: 15px;
+            font-size:11px;
+            display: inline-block;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .action-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .like, .comment, .share {
+            cursor: pointer;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #555;
+            transition: all 0.2s;
+        }
+
+        .like.liked {
+            color: red;
+        }
+
+        .like:hover, .comment:hover, .share:hover {
+            transform: scale(1.1);
+        }
+
+       
+        .toast {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-left: 6px solid #059669;
+            max-width: 300px;
+            font-size: 0.9rem;
+            z-index: 1000;
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-left: 10px;
+            float: right;
+            color: inherit;
+            padding: 0;
+        }
+
+        .toast-close:hover {
+            opacity: 0.8;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+     
+        .empty-bookmarks-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #6b7280;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .empty-bookmarks-state .empty-icon {
+            font-size: 3rem;
+            color:#d1d5db;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-bookmarks-state h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #111827;
+            font-weight: 600;
+        }
+
+        .empty-bookmarks-state p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            max-width: 450px;
+            line-height: 1.4;
+        }
+
+        .browse-community-btn {
+            background-color: #00996D;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-decoration: none; 
+        }
+
+        .browse-community-btn:hover {
+            background-color: #008054;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        
+        .site-footer {
+            background-color: #f8f8f8;
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .footer-note {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .copyright {
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+<script>
+  const navEntries = performance.getEntriesByType("navigation");
+  const isReload = navEntries.length > 0 && navEntries[0].type === "reload";
+
+  const currentPage = window.location.pathname;
+
+  if (isReload && !currentPage.includes('balanced_thali.html')) {
+    sessionStorage.removeItem('userAge');
+    sessionStorage.removeItem('currentBalancedThali');
+    sessionStorage.removeItem('hasCurrentPlate');
+  }
+</script>
+
+
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-icon">🍽️</span>
+                    <span class="brand">The Balanced Plate</span>
+                </a>
+                <button class="design-btn" onclick="window.location.href='index.html'">Design your own plate</button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="balanced_plate.html" class="nav-item">🍴Balance Plate</a></li>
+                <li><a href="communitypage.html" class="nav-item">Community</a></li>
+                <li><a href="my_plates.html" class="nav-item">My Plates</a></li>
+                <li><a href="#" class="nav-item active">⭐Bookmarks</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Your Bookmarked Plates</h1>
+            <p class="subtitle">Curated collection of your favorite balanced plates from the community</p>
+        </div>
+
+        <section id="bookmarked-posts">
+            </section>
+
+        <div id="empty-bookmarks" class="empty-bookmarks-state" style="display: none;">
+            <div class="empty-icon">
+                <i class="far fa-bookmark"></i>
+            </div>
+            <h2>No Bookmarks Yet</h2>
+            <p>Looks like you haven't bookmarked any plates. Explore the community and save your favorite meals!</p>
+            <a href="communitypage.html" class="browse-community-btn">Browse Community</a>
+        </div>
+
+
+        <div id="toast" class="toast">
+            <button class="toast-close" onclick="hideToast()">×</button>
+            <strong id="toast-title">Title</strong>
+            <p id="toast-message">Message</p>
+        </div>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="footer-note">Nutritional data based on Indian National Institute of Nutrition (NIN) guidelines</p>
+            <p class="copyright">© 2025 Balance Plate - Personalized Nutrition for Healthy Living</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', loadBookmarks);
+
+        function showToast(title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').innerText = title;
+            document.getElementById('toast-message').innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000); // Hide after 3 seconds
+        }
+
+        function hideToast() {
+            document.getElementById('toast').classList.remove('show');
+        }
+
+        function loadBookmarks() {
+            const bookmarkedPostsContainer = document.getElementById('bookmarked-posts');
+            bookmarkedPostsContainer.innerHTML = ''; 
+            let hasBookmarks = false;
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith('bookmarked_') && localStorage.getItem(key) === 'true') {
+                    const postId = key.replace('bookmarked_', '');
+                    const postData = JSON.parse(localStorage.getItem(`post_${postId}`));
+
+                    if (postData) {
+                        hasBookmarks = true;
+                        const postCard = createPostCardElement(postData);
+                        bookmarkedPostsContainer.appendChild(postCard);
+                    } else {
+                        
+                        localStorage.removeItem(key);
+                    }
+                }
+            }
+
+            const emptyBookmarksState = document.getElementById('empty-bookmarks');
+            if (!hasBookmarks) {
+                emptyBookmarksState.style.display = 'flex';
+            } else {
+                emptyBookmarksState.style.display = 'none';
+            }
+        }
+
+        function createPostCardElement(post) {
+            const postCard = document.createElement('div');
+            postCard.classList.add('post-card');
+            postCard.dataset.postId = post.id;
+
+            const ingredientsHtml = post.ingredients.map(tag => `<span class="tag">${tag}</span>`).join('');
+
+            postCard.innerHTML = `
+                <button class="bookmark-btn" onclick="toggleBookmark(this)">★</button>
+                <div class="post-header">
+                    <img src="${post.avatarSrc}" class="avatar" alt="${post.userName}" />
+                    <div class="post-user">
+                        <strong>${post.userName}</strong>
+                        <span>${post.userHandle}</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <p>${post.text}</p>
+                    <p class="tags">${post.tags}</p>
+                </div>
+                <div class="image-container">
+                    <img class="post-image" src="${post.imageSrc}" alt="Balanced plate" />
+                   <!-- <button class="image-action-btn" onclick="showAddToast()">
+                        <span>Add To My Plate</span>
+                    </button> -->
+                </div> 
+                <div class="ingredients">
+                    <strong>Plate Ingredients:</strong>
+                    ${ingredientsHtml}
+                </div>
+             <!--   <div class="actions">
+                    <div class="action-group">
+                        <span class="like" onclick="likePost(this)"><i class="fas fa-heart"></i> <span class="like-count">${post.likes}</span></span>
+                        <span class="comment" onclick="commentFeature()"><i class="fas fa-comment"></i> <span class="comment-count">${post.comments}</span></span>
+                    </div>
+                    <span class="share" onclick="sharePost()"><i class="fas fa-share-alt"></i> Share</span>
+                </div> -->
+            `;
+            return postCard;
+        }
+
+        function toggleBookmark(button) {
+            const postCard = button.closest('.post-card');
+            const postId = postCard.dataset.postId;
+
+          
+            localStorage.removeItem(`bookmarked_${postId}`);
+            localStorage.removeItem(`post_${postId}`);
+
+           
+            postCard.remove();
+            showToast('Bookmark Removed', 'This post has been removed from your bookmarks.');
+
+            
+            loadBookmarks(); 
+        }
+
+       
+        function showAddToast() {
+            showToast('Plate Selected!', 'This balanced meal has been added to your plate.');
+        }
+
+        function commentFeature() {
+            showToast('Comments Feature', 'Comments will be available in the next update!');
+        }
+
+        function sharePost() {
+            showToast('Sharing Post', "You're sharing this balanced plate with your friends!");
+        }
+
+        function likePost(button) {
+            const likeCountSpan = button.querySelector('.like-count');
+            let currentLikes = parseInt(likeCountSpan.innerText);
+
+            if (button.classList.contains('liked')) {
+                button.classList.remove('liked');
+                likeCountSpan.innerText = currentLikes - 1;
+                showToast('Unliked!', 'You have unliked this post.');
+            } else {
+                button.classList.add('liked');
+                likeCountSpan.innerText = currentLikes + 1;
+                showToast('Liked!', 'You have liked this post!');
+            }
+        }
+        
+        
+    </script>
+</body>
+</html>
+
+
+

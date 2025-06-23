@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Plates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles5.css" />
+    
+<script>
+  const navEntries = performance.getEntriesByType("navigation");
+  const isReload = navEntries.length > 0 && navEntries[0].type === "reload";
+
+  const currentPage = window.location.pathname;
+
+  if (isReload && currentPage.includes('my_plates.html')) {
+    // When reloading on my_plates.html:
+    // 1. Clear profile setup to show "Set Up Profile" box
+    // 2. Clear all thali data so thali page goes to age input next time
+    sessionStorage.removeItem('profileSet');
+    sessionStorage.removeItem('userAge');
+    sessionStorage.removeItem('currentBalancedThali');
+    sessionStorage.removeItem('hasCurrentPlate');
+  }
+</script>
+
+
+
+
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+             <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <span class="logo-icon">🍽️</span>
+          <span class="brand">The Balanced Plate</span>
+        </a>
+        <button class="design-btn" onclick="window.location.href='index.html'">Design your own plate</button>
+      </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="balanced_plate.html" class="nav-item">🍴Balance Plate</a></li>
+                <li><a href="communitypage.html" class="nav-item">&#128101;Community</a></li>
+                <li><a href="#" class="nav-item active">My Plates</a></li>
+                <li><a href="bookmarks.html" class="nav-item">⭐Bookmarks</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="profile-setup" id="profileSetup">
+            <h1>Set Up Your Profile</h1>
+            <p>Please set your age first to get personalized nutritional recommendations.</p>
+            <div class="divider"></div>
+            <button class="btn" id="setupProfileBtn">Set Up Your Profile</button>
+        </div>
+        
+        <div class="empty-page" id="emptyPage" style="display: none;">
+            <div class="profile-section">
+                <div class="profile-header">
+                    <h2><i class="fas fa-user-circle"></i> Your Profile</h2>
+                    <p>Save and manage your favourite meal plates for easy access</p>
+                </div>
+            </div>
+            
+            <section class="save-plate-box">
+                <h2><i class="fas fa-bookmark"></i> Save Your Current Plate</h2>
+                <div class="save-input-group">
+                    <input type="text" placeholder="Give your plate a name..." class="plate-input" id="plateNameInput">
+                    <button class="save-btn" id="savePlateBtn">
+                        <i class="fas fa-bookmark"></i> Save Plate
+                    </button>
+                </div>
+            </section>
+
+            <div class="saved-plates-header">
+                <h2> Your Saved Plates</h2>
+            </div>
+        
+            <section class="saved-plates-container" id="savedPlatesContainer">
+               
+            </section>
+
+            <section class="empty-saved-plates" id="emptySavedPlatesMessage" style="display: none;">
+                <div class="empty-content animated">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-bookmark"></i>
+                    </div>
+                    <h3>No saved plates yet</h3>
+                    <p>Create and save your favorite meal combinations for quick access in the future.</p>
+                    <button class="btn build-btn" onclick="window.location.href='balanced_plate.html'">
+                        🍽️ Build a New Plate
+                    </button>
+                </div>
+            </section>
+
+            <div class="toast-message" id="toastMessage">
+                <i class="fas fa-info-circle"></i>
+                <span id="toastText">Plate saved successfully</span>
+            </div>
+        </div>
+
+        
+    </main> 
+    
+<script src="scripts3.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Balance Plate for Professionals</title>
+  
+  <link rel="stylesheet" href="styles2.css" />
+
+  
+    <script>
+   
+    const userAge = sessionStorage.getItem('userAge');
+    if (userAge && performance.navigation.type !== 1) {
+      window.location.href = "balanced_thali.html?age=" + userAge;
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <span class="logo-icon">🍽️</span>
+          <span class="brand">The Balanced Plate</span>
+        </a>
+       <button class="design-btn" onclick="window.location.href='index.html'">Design your own plate</button>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-item">Home</a></li>
+        <li><a href="balanced_thali.html" class="nav-item active">🍴Balance Plate</a></li>
+        <li><a href="communitypage.html" class="nav-item">&#128101;Community</a></li>
+        <li><a href="my_plates.html" class="nav-item">My Plates</a></li>
+        <li><a href="bookmarks.html" class="nav-item">⭐Bookmarks</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <h1 class="page-title">Balanced Plate For Professionals</h1>
+    <p class="subtitle">Quick, nutritious meal options for busy work days</p>
+
+    <div class="container" id="main-container">
+      <div class="card" id="form-page">
+        <div class="icon-circle">🍴</div>
+        <h2 class="welcome-title">Welcome to Balance Plate</h2>
+        <p class="description">
+          We'll create a personalized lunch meal plan based on your nutritional
+          needs according to Indian National Institute of Nutrition guidelines.
+        </p>
+
+        <div class="input-group">
+          <label for="age">Your Age</label>
+          <input type="number" id="age" min="4" placeholder="Enter your age" />
+          <div class="error-message" id="error-message"></div>
+        </div>
+
+        <button class="btn" id="get-started-btn">Get Started</button>
+        <p class="description">your personalized nutritional guidance for a balanced diet </p>
+      </div>
+    </div>
+  </main>
+  
+
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      const ageInput = document.getElementById('age');
+      const errorMessage = document.getElementById('error-message');
+      const getStartedBtn = document.getElementById('get-started-btn');
+      const container = document.getElementById('main-container');
+
+      function validateAge() {
+        const ageStr = ageInput.value.trim();
+        const age = Number(ageStr);
+
+        if (!ageStr || isNaN(age)) {
+          errorMessage.textContent = "Please enter a valid number";
+          errorMessage.classList.add('show');
+          return false;
+        } else if (age < 4) {
+          errorMessage.textContent = "Age must be 4 or higher";
+          errorMessage.classList.add('show');
+          return false;
+        } else {
+          errorMessage.textContent = "";
+          errorMessage.classList.remove('show');
+          return true;
+        }
+      }
+
+      getStartedBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        if (!validateAge()) {
+          container.style.animation = 'shake 0.5s';
+          setTimeout(() => {
+            container.style.animation = '';
+          }, 500);
+        } else {
+          const age = parseInt(ageInput.value);
+          sessionStorage.setItem('userAge', age);
+           sessionStorage.setItem('profileSet', 'true'); 
+          window.location.href = "balanced_thali.html?age=" + age;
+        }
+      });
+    });
+    
+   
+  </script>
+
+
+</body>
+</html> 

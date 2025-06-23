@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+      <link rel="stylesheet" href="styles4.css" />
+<script>
+  const navEntries = performance.getEntriesByType("navigation");
+  const isReload = navEntries.length > 0 && navEntries[0].type === "reload";
+
+  const currentPage = window.location.pathname;
+
+  if (isReload && !currentPage.includes('balanced_thali.html')) {
+    sessionStorage.removeItem('userAge');
+    sessionStorage.removeItem('currentBalancedThali');
+    sessionStorage.removeItem('hasCurrentPlate');
+  }
+</script>
+
+
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="logo-icon">🍽️</span>
+                    <span class="brand">The Balanced Plate</span>
+                </a>
+                <button class="design-btn" onclick="window.location.href='index.html'">Design your own plate</button>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-item">Home</a></li>
+                <li><a href="balanced_plate.html" class="nav-item">🍴Balance Plate</a></li>
+                <li><a href="#" class="nav-item active">&#128101;Community</a></li>
+                <li><a href="my_plates.html" class="nav-item">My Plates</a></li>
+                <li><a href="bookmarks.html" class="nav-item">⭐Bookmarks</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="page-header">
+            <h1>Balance Plate Community</h1>
+            <p class="subtitle">See what others are eating, get inspired, and share your own balanced plates</p>
+        </div>
+
+        <section class="share-box">
+            <div class="share-text">
+                <h2>Share Your Balanced Plate</h2>
+                <p>Inspire the community with your nutritious creations</p>
+            </div>
+            <button class="upload-btn" onclick="showUploadToast()">⬆️ Upload</button>
+        </section>
+
+
+        <section class="tabs-section">
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab('trending')">Trending</button>
+                <button class="tab-btn" onclick="showTab('recent')">Recent</button>
+                <button class="tab-btn" onclick="showTab('following')">Following</button>
+            </div>
+            <button class="find-friends-btn" onclick="showTab('friends')">👥 Find Friends</button>
+        </section>
+
+        <section id="trending" class="tab-content active">
+            <div class="post-card" data-post-id="post-1">
+                <button class="bookmark-btn" onclick="toggleBookmark(this)">☆</button>
+
+                <div class="post-header">
+                    <img src="anupama-parameswaran-stills-photos-pictures-843.jpg" class="avatar" alt="Priya Sharma" />
+                    <div class="post-user">
+                        <strong>Jyoshna</strong>
+                        <span>@Jyoshnareddy • 2 hours ago</span>
+                    </div>
+                </div>
+
+                <div class="post-content">
+                    <p>My balanced plate for a busy workday! Brown rice with dal tadka and mixed vegetables.</p>
+                    <p class="tags">#balancedmeal #workday #healthyeating</p>
+                </div>
+
+                <div class="image-container">
+                    <img class="post-image" src="https://media.istockphoto.com/id/2166905261/photo/dal-tadka-with-rice.jpg?s=612x612&w=0&k=20&c=KqXLIayBT5S5KTgpVIF7-KUNvQq15UtebDGUtMAbnSU=" alt="Balanced plate" />
+                    <button class="image-action-btn" onclick="showAddToast()">
+                        <span>Add To My Plate</span>
+                    </button>
+                </div>
+                <div class="ingredients">
+                    <strong>Plate Ingredients:</strong>
+                    <span class="tag">Brown Rice</span>
+                    <span class="tag">Dal Tadka</span>
+                    <span class="tag">Fresh Fruit Salad</span>
+                    <span class="tag">Spiced Buttermilk</span>
+                </div>
+
+
+                <div class="actions">
+                    <div class="action-group">
+                        <span class="like" onclick="likePost(this)"><span class="heart-icon">♡</span> <span class="like-count">15</span></span><br><br><br>
+                        <span class="comment" onclick="commentFeature()">💬 <span class="comment-count">12</span></span>
+                    </div>
+                    <span class="share" onclick="sharePost()"> ⏩Share</span>
+                </div>
+            </div>
+
+            <div class="post-card" data-post-id="post-2">
+                <button class="bookmark-btn" onclick="toggleBookmark(this)">☆</button>
+
+                <div class="post-header">
+                    <img src="Screenshot_20250621-122557_1.jpg" class="avatar" alt="Priya Sharma" />
+                    <div class="post-user">
+                        <strong>mahesh</strong>
+                        <span>@mahesh_nani • 4 hours ago</span>
+                    </div>
+                </div>
+
+                <div class="post-content">
+                    <p>Protein-packed lunch for gym day! Quinoa with chicken tikka masala and a side of yogurt.</p>
+                    <p class="tags">#proteinpacked #gymlife #fitfood</p>
+                </div>
+
+                <div class="image-container">
+                    <img class="post-image" src="https://media.istockphoto.com/id/1360265988/photo/vegan-goulash-on-rice-in-bowl-with-dill-fork-and-spoon-on-rustic-fabric.jpg?s=612x612&w=0&k=20&c=76MSxZOX9fxcy9xDRMhjXESwBmk1JEtnfJqsim0qtCU=" alt="Balanced plate" />
+                    <button class="image-action-btn" onclick="showAddToast()">
+                        <span>Add To My Plate</span>
+                    </button>
+                </div>
+                <div class="ingredients">
+                    <strong>Plate Ingredients:</strong>
+                    <span class="tag">Quinoa Bowl</span>
+                    <span class="tag">Chicken Tikks Masala</span>
+                    <span class="tag">Greek Yogurt Parfait</span>
+                    <span class="tag">Fresh Lime Juice</span>
+                </div>
+
+
+                <div class="actions">
+                    <div class="action-group">
+                        <span class="like" onclick="likePost(this)"><span class="heart-icon">♡</span> <span class="like-count">5</span></span><br><br><br>
+                        <span class="comment" onclick="commentFeature()">💬 <span class="comment-count">30</span></span>
+                    </div>
+                    <span class="share" onclick="sharePost()">⏩ Share</span>
+                </div>
+            </div>
+
+
+            <div class="post-card" data-post-id="post-3">
+                <button class="bookmark-btn" onclick="toggleBookmark(this)">☆</button>
+
+                <div class="post-header">
+                    <img src="Screenshot_20250621-121214_1.jpg" class="avatar" alt="Priya Sharma" />
+                    <div class="post-user">
+                        <strong>Lucky</strong>
+                        <span>@Lucky_mahii • 1 day ago</span>
+                    </div>
+                </div>
+
+                <div class="post-content">
+                    <p>Vegan delight! Ragi base with baingan bharta and a fresh fruit salad on the side.</p>
+                    <p class="tags">#veganmeals #sustainable #plantbased</p>
+                </div>
+
+                <div class="image-container">
+                    <img class="post-image" src="https://media.istockphoto.com/id/1157979204/photo/kuchmachi-georgian-cuisine.jpg?s=612x612&w=0&k=20&c=f4isHljSasZXPURv6KTa5FKZfVSpCrKMU8d4yQfnmkw=" alt="Balanced plate" />
+                    <button class="image-action-btn" onclick="showAddToast()">
+                        <span>Add To My Plate</span>
+                    </button>
+                </div>
+                <div class="ingredients">
+                    <strong>Plate Ingredients:</strong>
+                    <span class="tag">Ragi(Finger Millet)</span>
+                    <span class="tag">Baingan Bharta</span>
+                    <span class="tag">Fresh Fruit Salad</span>
+                    <span class="tag">Coconut Water</span>
+                </div>
+
+
+                <div class="actions">
+                    <div class="action-group">
+                        <span class="like" onclick="likePost(this)"><span class="heart-icon">♡</span> <span class="like-count">23</span></span><br><br><br>
+                        <span class="comment" onclick="commentFeature()">💬 <span class="comment-count">2</span></span>
+                    </div>
+                    <span class="share" onclick="sharePost()">⏩ Share</span>
+                </div>
+            </div>
+
+            <div class="load-more-container">
+                <button class="load-more-btn" onclick="loadMorePosts()"> <i class="fas fa-chevron-up"></i> Load more</button>
+            </div>
+
+
+        </section>
+
+        <section id="recent" class="tab-content">
+            <div class="post-card">
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="far fa-images"></i>
+                    </div>
+                    <h2>No recent posts yet</h2>
+                    <p>Check back soon for the latest balanced plates from the community!</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="following" class="tab-content">
+            <div class="post-card">
+                <div class="following-empty-state">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png" alt="Find Friends" class="friends-image" />
+                    <h3>Follow more people</h3>
+                    <p>When you follow others, their posts will appear here.</p>
+                    <button class="find-friends-btn" onclick="showTab('friends')">
+                        Find Friends
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="friends" class="tab-content">
+            <div class="post-card">
+                <p>Find and connect with food enthusiasts near you!</p>
+            </div>
+        </section>
+
+
+        <div id="toast" class="toast">
+            <button class="toast-close" onclick="hideToast()">×</button>
+            <strong id="toast-title">Title</strong>
+            <p id="toast-message">Message</p>
+        </div>
+
+
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="footer-note">Nutritional data based on Indian National Institute of Nutrition (NIN) guidelines</p>
+            <p class="copyright">© 2025 Balance Plate - Personalized Nutrition for Healthy Living</p>
+        </div>
+    </footer>
+
+    <script src="scripts2.js"></script>
+</body>
+</html>
