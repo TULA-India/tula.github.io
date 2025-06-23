@@ -15,9 +15,6 @@
   const currentPage = window.location.pathname;
 
   if (isReload && currentPage.includes('my_plates.html')) {
-    // When reloading on my_plates.html:
-    // 1. Clear profile setup to show "Set Up Profile" box
-    // 2. Clear all thali data so thali page goes to age input next time
     sessionStorage.removeItem('profileSet');
     sessionStorage.removeItem('userAge');
     sessionStorage.removeItem('currentBalancedThali');
