@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Balanced Plate</title>
+  <link rel="stylesheet" href="styles1.css" />
+ 
+ <script>
+  const navEntries = performance.getEntriesByType("navigation");
+  const isReload = navEntries.length > 0 && navEntries[0].type === "reload";
+
+  const currentPage = window.location.pathname;
+
+  if (isReload && !currentPage.includes('balanced_thali.html')) {
+    sessionStorage.removeItem('userAge');
+    sessionStorage.removeItem('currentBalancedThali');
+    sessionStorage.removeItem('hasCurrentPlate');
+  }
+</script>
+
+
+
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <span class="logo-icon">🍽️</span>
+          <span class="brand">The Balanced Plate</span>
+        </a>
+        <button class="design-btn" onclick="window.location.href='index.html'">Design your own plate</button>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-item active">Home</a></li>
+        <li><a href="balanced_plate.html" class="nav-item ">🍴Balance Plate</a></li>
+        <li><a href="communitypage.html" class="nav-item ">&#128101;Community</a></li>
+        <li><a href="my_plates.html" class="nav-item ">My Plates</a></li>
+        <li><a href="bookmarks.html" class="nav-item">⭐Bookmarks</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>The Balanced Plate</h1>
+      <p class="subtitle">Design your own plate. Transparent ingredients. Balanced nutrition. Cultural heritage.</p>
+      <p class="description">
+        We're transforming quick service dining with a commitment to real, unmasked ingredients and authentic flavors
+        that support your health goals without compromising on taste.
+      </p>
+     <div class="buttons">
+        <a href="balanced_plate.html" class="btn primary">Start Building Your Plate</a>
+        <a href="communitypage.html" class="btn secondary">Explore Community Plates</a>
+      </div>
+
+    </div>
+  </section>
+  
+ <section class="features">
+  <h2>Experience The Difference</h2>
+  <div class="cards">
+    <div class="card green">
+      <div class="icon">🛡️</div>
+      <h3>Nutritionally Balanced</h3>
+      <p>Every dish follows NIN guidelines designed for your specific age group and activity level, ensuring optimal nutrition.</p>
+    </div>
+    <div class="card yellow">
+      <div class="icon">⏰</div>
+      <h3>Quick & Convenient</h3>
+      <p>Designed for busy professionals who need nutritious meals without sacrificing time, quality, or flavor.</p>
+    </div>
+    <div class="card purple">
+      <div class="icon">👨‍🍳</div>
+      <h3>Culturally Authentic</h3>
+      <p>We combine traditional culinary wisdom with modern nutritional science, preserving cultural heritage in every bite.</p>
+    </div>
+  </div>
+</section>
+
+
+<section class="comparison">
+  <h2 class="comparison-heading">Why We're Different</h2>
+  <p class="comparison-subtext">The Balanced Plate brings transparency, nutrition, and cultural authenticity back to quick service dining</p>
+  
+  <div class="comparison-section">
+    <div class="card red">
+      <h3>🍴 Problems With Traditional QSRs</h3>
+      <ul>
+  <li><span class="wrong">✗</span> Hidden ingredients and excessive additives masked behind vague labels</li>
+  <li><span class="wrong">✗</span> Ultra-processed foods linked to numerous health issues</li>
+  <li><span class="wrong">✗</span> Standardized menus with little consideration for diverse nutritional needs</li>
+  <li><span class="wrong">✗</span> Disconnect from cultural food traditions and indigenous ingredients</li>
+</ul>
+    </div>
+    <div class="card green">
+      <h3>🍃 The Balanced Plate Approach</h3>
+     <ul>
+  <li><span class="right">✓</span> Full transparency with all ingredients clearly disclosed and sourced</li>
+  <li><span class="right">✓</span> Whole, minimally processed foods that support long-term health</li>
+  <li><span class="right">✓</span> Personalized nutrition based on your age, dietary needs, and preferences</li>
+  <li><span class="right">✓</span> Celebrating indigenous ingredients and traditional culinary wisdom</li>
+</ul>
+    </div>
+  </div>
+</section>
+
+
+<section class="testimonials">
+  <h2>What Our Community Says</h2>
+  <p class="subheading">Join thousands of satisfied customers who have transformed their dining experience with The Balanced Plate</p>
+
+  <div class="testimonial-cards">
+    <div class="testimonial-card">
+      <div class="stars">⭐⭐⭐⭐</div>
+      <p class="quote">"I've struggled with managing my diabetes for years. The Balanced Plate has been a game-changer for me - I can enjoy authentic Indian food without worrying about my blood sugar levels."</p>
+      <div class="user">
+       <img src="Screenshot_20250621-121214_1.jpg" alt="lucky" class="avatar">
+        <span class="name"><strong>Lucky.,43</strong></span>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="stars">⭐⭐⭐⭐</div>
+      <p class="quote">"As a busy tech professional, I never had time for proper meals. The Balanced Plate helps me stay healthy without sacrificing my productivity or the flavors I grew up with."</p>
+      <div class="user">
+          <img src="anupama-parameswaran-stills-photos-pictures-843.jpg" alt="jyoshna" class="avatar">
+        <span class="name"><strong>Jyoshna,69</strong></span>
+      </div>
+    </div>
+
+    <div class="testimonial-card">
+  <div class="stars">⭐⭐⭐⭐</div>
+  <p class="quote">"I love that my kids can enjoy delicious Indian food that's actually good for them. The transparency about ingredients gives me peace of mind as a parent."</p>
+  <div class="user">
+    <img src="Screenshot_20250621-122557_1.jpg" alt="Mahii" class="avatar">
+    <span class="name"><strong>Mahii, 79</strong></span>
+  </div>
+</div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-content">
+    <h2>Start Your Journey to Balanced Nutrition</h2>
+    <p>Design your own perfect plate based on your unique nutritional needs and taste preferences.</p>
+  	<div class="cta-buttons">
+      <a href="balanced_plate.html"" class="btn-primary">Create Your Balanced Plate Today</a>
+      <a href="communitypage.html" class="btn-secondary">Join Our Community</a>
+    </div>
+  </div>
+</section>
+  
+  <footer class="footer">
+  <p>Nutritional data based on Indian National Institute of Nutrition (NIN) guidelines</p>
+  <p>© 2025 Balance Plate - Personalized Nutrition for Healthy Living</p>
+</footer>
+
+
+</body>
+</html>
+
+
