@@ -115,5 +115,5 @@
 
         function loadMorePosts() {
            
-            showToast('No More Posts','posts shaared by users appear here!');
+            showToast('No More Posts','posts shared by users appear here!');
         }
